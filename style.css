@@ -1,0 +1,15 @@
+main{
+    display: flex;
+    flex-direction: column;
+   
+
+}
+
+main div{
+    width: 25%;
+
+}
+
+button:active {
+    background-color: #ffbf00;
+}

@@ -1,15 +1,16 @@
-main{
-    display: flex;
-    flex-direction: column;
-   
-
+.btn:focus{
+    background-color: green;
+    border: 2px solid black;
+    /* color: white; */
 }
 
-main div{
-    width: 25%;
-
+.btnEnd{
+    background-color: white;
+    color: gray;
+    border: 1px solid white;
+    
 }
 
-button:active {
-    background-color: #ffbf00;
+.btn{
+    background-color: white;
 }

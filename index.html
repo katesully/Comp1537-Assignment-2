@@ -10,28 +10,61 @@
     <script src="script.js"></script>
 
 </head>
+
 <body>
     <div class="containner">
         <div class="row">
             <div class="col">
-        <button id="btnBack"> << </button>
-        <button id="btn1"> 1 </button>
-        <button id="btn2"> 2 </button>
-        <button id="btn3"> 3 </button>
-        <button id="btn4"> 4 </button>
-        <button id="btn5"> 5 </button>
-        <button id="btn6"> 6 </button>
-        <button id="btn7"> 7 </button>
-        <button id="btn8"> 8 </button>
-        <button id="btn9"> 9 </button>
-        <button id="btn10"> 10 </button>
-        <button id="btnForward"> >> </button>
+        <button class = btnEnd id="btnBack"> << </button>
+        <button class = "btn" id="btn1"> 1 </button>
+        <button class = "btn" id="btn2"> 2 </button>
+        <button class = "btn" id="btn3"> 3 </button>
+        <button class = "btn" id="btn4"> 4 </button>
+        <button class = "btn" id="btn5"> 5 </button>
+        <button class = "btn" id="btn6"> 6 </button>
+        <button class = "btn" id="btn7"> 7 </button>
+        <button class = "btn" id="btn8"> 8 </button>
+        <button class = "btn" id="btn9"> 9 </button>
+        <button class = "btn" id="btn10"> 10 </button>
+        <button class = btnEnd id="btnForward"> >> </button>
 
      </div>   
     </div>
     </div>
 
+    <br>
+
     <main>
+
+
+    <script>
+
+
+            $.ajax({
+                url: "https://yts.mx/api/v2/list_movies.json?sort_by=date_added",
+                success: function (res) {
+                    $("main").html("");
+           
+
+                    // slice to get the first 2 list_movies
+                    eight_movies = res.data.movies.slice(0, 2);
+                    eight_movies.forEach(function (movie) {
+                        
+
+                        $("main").append(
+                            `<div class="movie">
+                            <a href="movie_${movie.id}.html"><img src="${movie.medium_cover_image}" alt="${movie.title}"></a>
+                            <h3>${movie.title}</h3>
+                                       
+                            </div>`
+                        )
+
+                    })
+                }
+            })
+
+
+    </script>
 
 
     </main>

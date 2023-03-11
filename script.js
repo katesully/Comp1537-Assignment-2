@@ -1,34 +1,35 @@
-function setColor(btn, color){
-    var count=1;
-    var property = document.getElementById(btn);
-    if (count == 0){
-        property.style.backgroundColor = "#FFFFFF"
-        count=1;        
-    }
-    else{
-        property.style.backgroundColor = "#7FFF00"
-        count=0;
-    }
+// function setColor(btn, color){
+//     var count=1;
+//     var property = document.getElementById(btn);
+//     if (count == 0){
+//         property.style.backgroundColor = "#FFFFFF"
+//         count=1;        
+//     }
+//     else{
+//         property.style.backgroundColor = "#7FFF00"
+//         count=0;
+//     }
 
-}
-
-
+// }
 
 
-
-
+var buttonIndex = 0;
+var buttonIndexOld = 0;
 
 
 function compute(id) {
 
     // var buttons = $("button");
-    // var index = 0;
+    // // var index = 0;
+    // 
+    // var btn = $("btn");
 
     
 
     switch (id) {
         case "btn1":
             index = 0;
+            buttonIndex = 1;
             $.ajax({
                 url: "https://yts.mx/api/v2/list_movies.json?sort_by=date_added",
                 success: function (res) {
@@ -55,6 +56,7 @@ function compute(id) {
 
         case "btn2":
             index = 2;
+            buttonIndex = 2;
             $.ajax({
                 url: "https://yts.mx/api/v2/list_movies.json?sort_by=date_added",
                 success: function (res) {
@@ -73,12 +75,15 @@ function compute(id) {
                                     </div>`
                         )
 
+                    
+
                     })
                 }
             })
             break;
         case "btn3":
             index = 4;
+            buttonIndex = 3;
             $.ajax({
                 url: "https://yts.mx/api/v2/list_movies.json?sort_by=date_added",
                 success: function (res) {
@@ -103,6 +108,7 @@ function compute(id) {
             break;
         case "btn4":
             index = 6;
+            buttonIndex = 4;
             $.ajax({
                 url: "https://yts.mx/api/v2/list_movies.json?sort_by=date_added",
                 success: function (res) {
@@ -127,6 +133,7 @@ function compute(id) {
             break;
         case "btn5":
             index = 8;
+            buttonIndex = 5;
             $.ajax({
                 url: "https://yts.mx/api/v2/list_movies.json?sort_by=date_added",
                 success: function (res) {
@@ -151,6 +158,7 @@ function compute(id) {
             break;
         case "btn6":
             index = 10;
+            buttonIndex = 6;
             $.ajax({
                 url: "https://yts.mx/api/v2/list_movies.json?sort_by=date_added",
                 success: function (res) {
@@ -175,6 +183,7 @@ function compute(id) {
             break;
         case "btn7":
             index = 12;
+            buttonIndex = 7;
             $.ajax({
                 url: "https://yts.mx/api/v2/list_movies.json?sort_by=date_added",
                 success: function (res) {
@@ -199,6 +208,7 @@ function compute(id) {
             break;
         case "btn8":
             index = 14;
+            buttonIndex = 8;
             $.ajax({
                 url: "https://yts.mx/api/v2/list_movies.json?sort_by=date_added",
                 success: function (res) {
@@ -223,6 +233,7 @@ function compute(id) {
             break;
         case "btn9":
             index = 16;
+            buttonIndex = 9;
             $.ajax({
                 url: "https://yts.mx/api/v2/list_movies.json?sort_by=date_added",
                 success: function (res) {
@@ -247,6 +258,7 @@ function compute(id) {
             break;
         case "btn10":
             index = 18;
+            buttonIndex = 10;
             $.ajax({
                 url: "https://yts.mx/api/v2/list_movies.json?sort_by=date_added",
                 success: function (res) {
@@ -270,11 +282,26 @@ function compute(id) {
             })
             break;
                 case "btnBack":
+            buttonIndex = buttonIndex - 1;
             index = index - 2;
+            
+            buttonIndexOld = buttonIndex + 1;
+            document.getElementById("btn" + buttonIndex).style.backgroundColor= "green";
+            // document.getElementById("btn" + buttonIndex).style.color= "white";
+            document.getElementById("btn" + buttonIndexOld).style.backgroundColor= "white";
+            // document.getElementById("btn" + buttonIndexOld).style.color= "black";
+
+            if (index > 2 ) {
+                document.getElementById("btnBack").style.color= "black", border = "1px solid black";
+                document.getElementById("btnBack").style.border = "2px solid black";
+            }
+            
+    
             $.ajax({
                 url: "https://yts.mx/api/v2/list_movies.json?sort_by=date_added",
                 success: function (res) {
                     $("main").html("");
+                    
 
                     // slice to get the first 2 list_movies
                     eight_movies = res.data.movies.slice(index, index + 2);
@@ -291,10 +318,25 @@ function compute(id) {
 
                     })
                 }
+                
             })
             break;
             case "btnForward":
                 index = index + 2;
+                buttonIndex = buttonIndex + 1;
+                buttonIndexOld = buttonIndex - 1;
+                document.getElementById("btn" + buttonIndex).style.backgroundColor= "green";
+                // document.getElementById("btn" + buttonIndex).style.color= "white";
+                document.getElementById("btn" + buttonIndexOld).style.backgroundColor= "white";
+
+                
+            if (index < 18 ) {
+                document.getElementById("btnForward").style.color= "black", border = "1px solid black";
+                document.getElementById("btnForward").style.border = "2px solid black";
+            }
+            
+                
+                
                 $.ajax({
                     url: "https://yts.mx/api/v2/list_movies.json?sort_by=date_added",
                     success: function (res) {
@@ -331,6 +373,8 @@ const setup = () => {
     });
 
 }
+
+
 
 
 $(document).ready(setup)
